@@ -15,3 +15,4 @@ Note
 * To pick a location from the map dialog, simply double click on the map
 * The text box on the map dialog is just for previewing the address, not editable
 * The "Export to CSV" link only appears when there is at least 1 address on the table
+* The exported csv file displays well on http://www.convertcsv.com/csv-viewer-editor.htm
