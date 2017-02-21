@@ -1,0 +1,50 @@
+form.address-form {
+    margin:10px auto;
+    max-width: 500px;
+    padding: 20px 12px 10px 20px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.address-form .form-group {
+    padding: 0;
+    display: block;
+    margin: 10px 0 0 0;
+}
+
+.address-form .action-button-group {
+    text-align: right;
+}
+
+.address-form label {
+    margin:0 0 3px 0;
+    padding:0px;
+    display:block;
+    font-weight: bold;
+}
+.address-form input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+
+.address-form button.map-button {
+    background: #4CAF50;
+    float: left;
+}
+
+.address-form button.map-button:hover {
+    background: #45A843;
+}
+
+.address-form .action-button {
+    float: right;
+    margin-left: 5px;
+}

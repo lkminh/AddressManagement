@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.flat-button {
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    margin: 0;
+    cursor: pointer;
+}
+
+.flat-button:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

@@ -1,0 +1,81 @@
+
+.address-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+
+.address-table tr:nth-of-type(odd) {
+    background: #eef;
+}
+.address-table th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+.address-table td, th {
+    padding: 6px;
+    border: 1px solid #aaa;
+    text-align: left;
+}
+
+.address-table .action-button {
+    margin-right: 5px;
+}
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+	.address-table table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	.address-table thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.address-table tr {
+        border: 1px solid #eef;
+    }
+
+	.address-table td {
+		border: none;
+		border-bottom: 1px solid #ddd;
+		position: relative;
+		padding-left: 50%;
+	}
+
+    .address-table td:last-child {
+        border-bottom: none;
+    }
+
+	.address-table td:before {
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	.address-table td.cell-street:before {
+        content: "Street";
+    }
+	.address-table td.cell-ward:before {
+        content: "Ward";
+    }
+	.address-table td.cell-district:before {
+        content: "District";
+    }
+	.address-table td.cell-city:before {
+        content: "City";
+    }
+	.address-table td.cell-country:before {
+        content: "Country";
+    }
+	.address-table td.cell-actions:before {
+        content: "Actions";
+    }
+}
