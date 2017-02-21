@@ -5,6 +5,7 @@ Steps to run the project
 
 1. npm install
 2. npm run start
+3. Access http://localhost:8080 for the website
 
 Note
 * The app uses Local Storage to store data
