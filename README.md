@@ -1,13 +1,12 @@
 # AddressManagement
-A tool for managing addresses
 
-Steps to run the project
+Steps to run the project:
 
 1. npm install
 2. npm run start
 3. Access http://localhost:8080 for the website
 
-Note
+Notes:
 * The app uses Local Storage to store data
 * The app currently supports 2 input methods: 
   - Method 1: A Form with simple text inputs
