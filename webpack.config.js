@@ -6,7 +6,12 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body'
 });
 module.exports = {
-    entry: './src/js/index.js',
+    entry: [
+        "webpack-dev-server/client?http://localhost:8080", // WebpackDevServer host and port
+        "webpack/hot/only-dev-server", // "only" stops HMR on syntax errors
+        'react-hot-loader/patch',
+        './src/js/index.js'
+    ],
     output: {
         path: path.resolve('dist'),
         filename: 'index_bundle.js',

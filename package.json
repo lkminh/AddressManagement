@@ -4,7 +4,7 @@
   "description": "tool for managing addresses",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server"
+    "start": "./node_modules/.bin/webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.26.1",
     "path": "^0.12.7",
+    "react-hot-loader": "^3.0.0-beta.6",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
