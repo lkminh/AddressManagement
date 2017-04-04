@@ -65,26 +65,24 @@ export default class AddressForm extends React.Component {
         }
 
         if (this.props.onReceiveAddress) {
-            if (this.props.onReceiveAddress) {
-                let id = null;
-                if (this.props.address && this.props.address.id) {
-                    // if address is set as default then re-use its id
-                    id = this.props.address.id;
-                } else {
-                    // otherwise, generate a new id
-                    id = new Date().getTime();
-                }
+            //let id = null;
+            //if (this.props.address && this.props.address.id) {
+            //    // if address is set as default then re-use its id
+            //    id = this.props.address.id;
+            //} else {
+            //    // otherwise, generate a new id
+            //    id = new Date().getTime();
+            //}
 
-                let data = {
-                    id: id,
-                    street: street,
-                    ward: ward,
-                    district: district,
-                    city: city,
-                    country: country
-                };
-                this.props.onReceiveAddress(data);
-            }
+            let data = {
+                //id: id,
+                street: street,
+                ward: ward,
+                district: district,
+                city: city,
+                country: country
+            };
+            this.props.onReceiveAddress(data);
         }
     }
 

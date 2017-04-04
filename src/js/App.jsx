@@ -2,23 +2,23 @@ import React from 'react';
 import AddressForm from './components/AddressForm.jsx';
 import AddressItem from './components/AddressItem.jsx';
 import AddressTable from './components/AddressTable.jsx';
-import style from '../css/style.css'
-
-const STATE_LIST = "list";
-const STATE_ADD = "add";
-const STATE_EDIT = "edit";
+import style from '../css/style.css';
+import { addressReducer, deleteAddress, addAddress, editAddress } from './store/address.js';
+import { viewReducer, viewAddAddress, viewEditAddress, viewListAddress, VIEW_NAME } from './store/view.js';
+import { configureStore } from './store/configureStore.js';
 
 const STORAGE_KEY = "--addresses--";
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({
-            addressMap: this.loadData(),
-            viewState: STATE_LIST,
-            addressToEdit: null,
-        });
-        this.onReceiveAddress = this.onReceiveAddress.bind(this);
+        const initialState = {
+            address: this.loadData()
+        };
+        this.store = configureStore(initialState);
+
+        this.onAddAddress = this.onAddAddress.bind(this);
+        this.onEditAddress = this.onEditAddress.bind(this);
         this.onDeleteAddress = this.onDeleteAddress.bind(this);
         this.openAddAddressForm = this.openAddAddressForm.bind(this);
         this.cancelAddressForm = this.cancelAddressForm.bind(this);
@@ -37,71 +37,76 @@ export default class App extends React.Component {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(addressMap));
     }
 
+    componentDidMount() {
+        this.unsubscribe = this.store.subscribe(() => {
+            this.saveData(this.store.getState().address);
+            this.forceUpdate();
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
     openAddAddressForm() {
-        this.setState({
-            viewState: STATE_ADD
-        })
+        this.store.dispatch(viewAddAddress());
     }
 
     openEditAddressForm(id) {
-        let address = this.state.addressMap[id];
-        if (address != null) {
-            this.setState({
-                viewState: STATE_EDIT,
-                addressToEdit: address
-            })
-        } else {
-            alert('Error occurs, cannot edit');
-        }
+        this.store.dispatch(viewEditAddress(id));
     }
 
     cancelAddressForm() {
-        this.setState({
-            viewState: STATE_LIST
-        })
+        this.store.dispatch(viewListAddress());
     }
 
-    onReceiveAddress(address) {
-        let addressEntry = {};
-        addressEntry[address.id] = address;
-        this.setState({
-            addressMap: Object.assign({}, this.state.addressMap, addressEntry),
-            viewState: STATE_LIST
-        }, () => this.saveData(this.state.addressMap));
+    onAddAddress(address) {
+        this.store.dispatch((dispatch) => {
+            dispatch(addAddress(address));
+            dispatch(viewListAddress());
+        });
+        //
+        //    this.store.dispatch(addAddress(address));
+        //    this.store.dispatch(viewListAddress());
+
+    }
+
+    onEditAddress(addressId, address) {
+        this.store.dispatch((dispatch) => {
+            dispatch(editAddress(addressId, address));
+            dispatch(viewListAddress());
+        });
     }
 
     onDeleteAddress(id) {
         if (confirm("Delete this address?")) {
-            // create new map but exclude the address with specified id
-            let newMap = Object.assign({}, this.state.addressMap);
-            delete newMap[id];
-            this.setState({
-                addressMap: newMap
-            }, () => this.saveData(this.state.addressMap));
+            this.store.dispatch(deleteAddress(id));
         }
     }
 
     render() {
         let child = null;
-        switch (this.state.viewState) {
-            case STATE_ADD: {
+        switch (this.store.getState().view.name) {
+            case VIEW_NAME.ADD: {
                 child = <AddressForm
-                    onReceiveAddress={this.onReceiveAddress}
+                    onReceiveAddress={this.onAddAddress}
                     onCancel={this.cancelAddressForm}
                     isEdit={false}/>;
                 break;
             }
-            case STATE_EDIT: {
+            case VIEW_NAME.EDIT: {
+                let addressIdToEdit = this.store.getState().view.addressIdToEdit;
+                let addressToEdit = this.store.getState().address[addressIdToEdit];
                 child = <AddressForm
-                    onReceiveAddress={this.onReceiveAddress}
+                    onReceiveAddress={(address) => this.onEditAddress(addressIdToEdit, address)}
                     onCancel={this.cancelAddressForm}
                     isEdit={true}
-                    address={this.state.addressToEdit}/>;
+                    address={addressToEdit}/>;
                 break;
             }
-            case STATE_LIST:
+            case VIEW_NAME.LIST:
             default: {
-                let addressList = Object.values(this.state.addressMap);
+                let addressList = Object.values(this.store.getState().address);
                 child = <AddressTable
                     addressList={addressList}
                     onDeleteAddressItem={this.onDeleteAddress}
