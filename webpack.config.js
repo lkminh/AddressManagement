@@ -17,6 +17,9 @@ module.exports = {
         filename: 'index_bundle.js',
     },
     devtool: "source-map",
+    devServer: {
+        historyApiFallback: true
+    },
     module: {
         loaders: [{
             test: /\.jsx?$/,

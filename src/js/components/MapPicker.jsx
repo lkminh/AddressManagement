@@ -13,7 +13,7 @@ export default class MapPicker extends React.Component {
         this.state = {
             mapCenter: {latitude: 14.0583, longitude:108.2772},
             selectedLocation: null,
-            selectedAddress: "",
+            selectedAddress: ""
         }
         this.onDoubleClickMap = this.onDoubleClickMap.bind(this);
         this.onMapCreated = this.onMapCreated.bind(this);

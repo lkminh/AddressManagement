@@ -87,7 +87,7 @@ export default class AddressForm extends React.Component {
     }
 
     render() {
-        let buttonLabel = this.props.isEdit ? "Update" : "Add";
+        let buttonLabel = this.props.submitButtonTitle || "Submit";
         let mapPicker = null;
         if (this.state.showMapPicker) {
             mapPicker = <MapPicker onPickAddress={this.onPickAddress} onCancel={this.onCancelMapPicker}/>;
