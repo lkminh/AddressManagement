@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AddressTable from '../../components/AddressTable.jsx'
 import { deleteAddress } from '../../store/address.js'
 export default class HomeView extends React.Component {
@@ -34,6 +35,6 @@ export default class HomeView extends React.Component {
 }
 
 HomeView.contextTypes = {
-    store: React.PropTypes.object,
-    router: React.PropTypes.object
+    store: PropTypes.object,
+    router: PropTypes.object
 };

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AddressForm from '../../components/AddressForm.jsx'
 import { editAddress } from '../../store/address.js'
 export default class AddAddressView extends React.Component {
@@ -34,6 +35,6 @@ export default class AddAddressView extends React.Component {
 }
 
 AddAddressView.contextTypes = {
-    store: React.PropTypes.object,
-    router: React.PropTypes.object
+    store: PropTypes.object,
+    router: PropTypes.object
 };

@@ -15,8 +15,8 @@ render(App);
 
 
 if (module.hot) { // 2
-  module.hot.accept("./App.jsx", () => { // 3
-    const NextApp = require("./App.jsx").default; // 4
+  module.hot.accept("./MainApp.jsx", () => { // 3
+    const NextApp = require("./MainApp.jsx").default; // 4
     render(NextApp);
   });
 }
